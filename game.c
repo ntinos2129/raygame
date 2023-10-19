@@ -3,7 +3,7 @@
 #define PHYSAC_IMPLEMENTATION
 #include "physac.h"
 
-#define VELOCITY    0.5f
+#define VELOCITY    0.7f
 
 int main()
 {
