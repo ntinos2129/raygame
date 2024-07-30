@@ -7,7 +7,7 @@
 
 int main()
 {
-    int screenWidth = 1366;
+    int screenWidth = 1024;
     int screenHeight = 768;
 
 
@@ -23,17 +23,22 @@ int main()
         BeginDrawing();
         if (IsKeyDown(KEY_SPACE)){
             ClearBackground(WHITE);
-        }
-        else{
-            ClearBackground(BLACK);
-        }
+        } 
+        else{ 
+            if (IsKeyDown(KEY_ENTER)){ 
+                ClearBackground(RED);
+            } 
+            else{ 
+                ClearBackground(BLACK);
+            }
+            }
         
 
         //DrawText("Use 'ARROWS' to move player", 10, 10, 10, WHITE);
         EndDrawing();
     }
 
-    CloseWindow();
+    CloseWindow(); 
 
     return 0;
 }
