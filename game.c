@@ -7,8 +7,8 @@
 
 int main()
 {
-    int screenWidth = 800;
-    int screenHeight = 600;
+    int screenWidth = 1366;
+    int screenHeight = 768;
 
 
     InitWindow(screenWidth, screenHeight, "raygame");
