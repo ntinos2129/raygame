@@ -1,4 +1,5 @@
-#include "raylib.h"
+#include <stdio.h>
+#include "raylib.h" 
 
 #define PHYSAC_IMPLEMENTATION
 #include "physac.h"
@@ -7,20 +8,27 @@
 
 int main()
 {
-    int screenWidth = 1024;
-    int screenHeight = 768;
+    int screenWidth = 800;
+    int screenHeight = 600; 
+    int RectangleWidth = screenWidth / 20; 
+    int RectangleHeight = screenHeight / 20;
+    //pixels 
+    //INITIAL POSITION VECTOR IN WINDOW: 
+    int x0 = screenWidth / 2 - (RectangleWidth / 2); 
+    int y0 = screenHeight / 2 - (RectangleHeight / 2); 
+    //MOVEMENT X,Y: /better in float, maybe?
+    int x1 = x0; 
+    int y1 = y0;
 
 
     InitWindow(screenWidth, screenHeight, "raygame");
+
     
-
-
     
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
-        
-        BeginDrawing();
+        BeginDrawing(); 
         if (IsKeyDown(KEY_SPACE)){
             ClearBackground(WHITE);
         } 
@@ -33,12 +41,29 @@ int main()
             }
             }
         
+        //"Use 'WASD' to move player" 
+        //DRAW SQUARE, MOVEMENT AND BORDER CHECK PART:  
+        DrawRectangle(x1, y1, RectangleWidth, RectangleHeight, SKYBLUE);
+        if (IsKeyDown(KEY_W) && (y1 - (RectangleHeight / 2) >= 0)){ 
+            y1 = y1 - (RectangleHeight / 2); 
+            x1 = x1;
+        } else if (IsKeyDown(KEY_S) && (y1 + RectangleHeight < screenHeight)){ 
+            y1 = y1 + (RectangleHeight / 2); 
+            x1 = x1;
+        } else if (IsKeyDown(KEY_A) && (x1 - (RectangleWidth / 2) >= 0)){ 
+            y1 = y1; 
+            x1 = x1 - (RectangleWidth / 2);
+        } else if (IsKeyDown(KEY_D) && (x1 + RectangleWidth < screenWidth)){ 
+            y1 = y1; 
+            x1 = x1 + (RectangleWidth / 2);
+        }
 
-        //DrawText("Use 'ARROWS' to move player", 10, 10, 10, WHITE);
+
+        //--------------------------
         EndDrawing();
     }
 
     CloseWindow(); 
 
     return 0;
-}
+} 

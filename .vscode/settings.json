@@ -12,5 +12,8 @@
 		"other": "on",
 		"comments": true,
 		"strings": "off"
+	},
+	"files.associations": {
+		"*.m": "c"
 	}
 }
