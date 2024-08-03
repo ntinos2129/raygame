@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "raylib.h" 
+#include <time.h>
+#include <stdlib.h>
 
 #define PHYSAC_IMPLEMENTATION
 #include "physac.h"
@@ -8,17 +10,18 @@
 
 int main()
 {
-    int screenWidth = 800;
-    int screenHeight = 600; 
-    int RectangleWidth = screenWidth / 20; 
-    int RectangleHeight = screenHeight / 20;
+    float screenWidth = 500.0;
+    float screenHeight = 500.0; 
+    float RectangleWidth = screenWidth / 20.0; 
+    float RectangleHeight = screenHeight / 20.0;
     //pixels 
     //INITIAL POSITION VECTOR IN WINDOW: 
-    int x0 = screenWidth / 2 - (RectangleWidth / 2); 
-    int y0 = screenHeight / 2 - (RectangleHeight / 2); 
-    //MOVEMENT X,Y: /better in float, maybe?
-    int x1 = x0; 
-    int y1 = y0;
+    float x0 = screenWidth / 2 - (RectangleWidth / 2); 
+    float y0 = screenHeight / 2 - (RectangleHeight / 2); 
+    float x1 = x0; 
+    float y1 = y0; 
+    int scoreCounter = 0;
+
 
 
     InitWindow(screenWidth, screenHeight, "raygame");
@@ -29,17 +32,16 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing(); 
+        Color clearColor = BLACK;
         if (IsKeyDown(KEY_SPACE)){
-            ClearBackground(WHITE);
+            clearColor = WHITE;
         } 
-        else{ 
-            if (IsKeyDown(KEY_ENTER)){ 
-                ClearBackground(RED);
-            } 
-            else{ 
-                ClearBackground(BLACK);
-            }
-            }
+        if (IsKeyDown(KEY_ENTER)){ 
+            clearColor = RED;
+        } 
+        ClearBackground(clearColor);
+
+
         
         //"Use 'WASD' to move player" 
         //DRAW SQUARE, MOVEMENT AND BORDER CHECK PART:  
@@ -47,17 +49,17 @@ int main()
         if (IsKeyDown(KEY_W) && (y1 - (RectangleHeight / 2) >= 0)){ 
             y1 = y1 - (RectangleHeight / 2); 
             x1 = x1;
-        } else if (IsKeyDown(KEY_S) && (y1 + RectangleHeight < screenHeight)){ 
+        }  if (IsKeyDown(KEY_S) && (y1 + RectangleHeight < screenHeight)){ 
             y1 = y1 + (RectangleHeight / 2); 
             x1 = x1;
-        } else if (IsKeyDown(KEY_A) && (x1 - (RectangleWidth / 2) >= 0)){ 
+        }  if (IsKeyDown(KEY_A) && (x1 - (RectangleWidth / 2) >= 0)){ 
             y1 = y1; 
             x1 = x1 - (RectangleWidth / 2);
-        } else if (IsKeyDown(KEY_D) && (x1 + RectangleWidth < screenWidth)){ 
+        } if (IsKeyDown(KEY_D) && (x1 + RectangleWidth < screenWidth)){ 
             y1 = y1; 
             x1 = x1 + (RectangleWidth / 2);
         }
-
+           
 
         //--------------------------
         EndDrawing();
