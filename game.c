@@ -13,7 +13,9 @@ int main()
     float screenWidth = 500.0;
     float screenHeight = 500.0; 
     float RectangleWidth = screenWidth / 20.0; 
-    float RectangleHeight = screenHeight / 20.0;
+    float RectangleHeight = screenHeight / 20.0; 
+    float tileHeight = RectangleHeight; 
+    float tileWidth = RectangleWidth; 
     //pixels 
     //INITIAL POSITION VECTOR IN WINDOW: 
     float x0 = screenWidth / 2 - (RectangleWidth / 2); 
@@ -41,6 +43,12 @@ int main()
         } 
         ClearBackground(clearColor);
 
+        for (int i=1; i <= (screenHeight/tileHeight - 1); i++){ 
+            DrawLine(0, i*tileHeight, screenWidth, i*tileHeight, WHITE);
+        }
+        for (int i=1; i <= (screenWidth/tileWidth - 1); i++){ 
+            DrawLine(i*tileWidth, 0, i*tileWidth, screenHeight, WHITE);
+        }
 
         
         //"Use 'WASD' to move player" 
@@ -60,7 +68,6 @@ int main()
             x1 = x1 + (RectangleWidth / 2);
         }
            
-
         //--------------------------
         EndDrawing();
     }
